@@ -14,11 +14,13 @@ public interface ShippingRepository extends JpaRepository<Shipping, Long> {
 
     Shipping findByOrderId(Long orderId);
 
+    Shipping findByIdAndUserId(Long id, Long userId);
+
     Shipping findByPaymentId(Long paymentId);
 
     Shipping findByStatus(String status);
 
-    List<Shipping> findByUserId(Long userid);
+    List<Shipping> findByUserIdOrderByCreatedDateDesc(Long userid);
 
     @Query(value = "UPDATE PAYMENT  " +
             "SET VALIDATION_STATUS = 'VALID' " +

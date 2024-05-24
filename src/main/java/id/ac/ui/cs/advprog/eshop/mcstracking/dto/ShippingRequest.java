@@ -12,6 +12,8 @@ public class ShippingRequest {
 
     private Long paymentId;
 
+    private Long userId;
+
     private String shippingMethod;
 
     private String receiptCode;

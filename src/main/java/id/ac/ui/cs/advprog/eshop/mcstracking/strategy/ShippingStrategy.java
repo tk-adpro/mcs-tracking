@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.mcstracking.strategy;
 
+import org.apache.coyote.BadRequestException;
+
 public interface ShippingStrategy {
-    boolean validateTrackingCode(String trackingCode);
+    void validateTrackingCode(String trackingCode) throws BadRequestException;
 }
