@@ -20,10 +20,6 @@ public class ShippingStrategyFactory {
     }
 
     public ShippingStrategy getStrategy(String shippingMethod) {
-        log.info("Amount of strategies available: {}", strategies.size());
-        log.info(shippingMethod);
-        log.info(strategies.get("JTE"));
-        log.info(strategies.get("Go-bek"));
         return strategies.get(shippingMethod);
     }
 }

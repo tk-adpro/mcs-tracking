@@ -21,6 +21,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
             UsernamePasswordAuthenticationToken auth = validateToken(authHeader);
 
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            if (auth != null) SecurityContextHolder.getContext().setAuthentication(auth);
         }
         filterChain.doFilter(request, response);
     }

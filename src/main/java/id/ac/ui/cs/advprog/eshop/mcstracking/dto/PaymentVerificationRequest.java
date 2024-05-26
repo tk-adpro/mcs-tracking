@@ -8,7 +8,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-@AllArgsConstructor
 public class PaymentVerificationRequest {
     private Long paymentId;
     private boolean isVerified;

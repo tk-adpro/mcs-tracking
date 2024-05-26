@@ -10,6 +10,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -22,11 +24,12 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**/public/**").permitAll()
-                        .requestMatchers("/**/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/**/customer/**").hasRole("CUSTOMER")
-                        .requestMatchers("/**/user/**").hasRole("USER")
-                        .requestMatchers("/**/ws/**").permitAll()
+                        .requestMatchers(antMatcher("/**/public/**"),
+                                        antMatcher("/**/ws/**"),
+                                        antMatcher("/**/topic/**")).permitAll()
+                        .requestMatchers(antMatcher("/**/admin/**")).hasRole("ADMIN")
+                        .requestMatchers(antMatcher("/**/customer/**")).hasRole("CUSTOMER")
+                        .requestMatchers(antMatcher("/**/user/**")).hasRole("USER")
                         .anyRequest().authenticated()
                 ).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
