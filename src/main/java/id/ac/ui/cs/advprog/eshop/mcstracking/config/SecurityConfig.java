@@ -26,7 +26,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(antMatcher("/**/public/**"),
                                         antMatcher("/**/ws/**"),
-                                        antMatcher("/**/topic/**")).permitAll()
+                                        antMatcher("/**/topic/**"),
+                                        antMatcher("/actuator/**")).permitAll()
                         .requestMatchers(antMatcher("/**/admin/**")).hasRole("ADMIN")
                         .requestMatchers(antMatcher("/**/customer/**")).hasRole("CUSTOMER")
                         .requestMatchers(antMatcher("/**/user/**")).hasRole("USER")
